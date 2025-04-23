@@ -20,6 +20,7 @@ repositories {
 extra["springCloudVersion"] = "2024.0.1"
 
 dependencies {
+	implementation("com.google.firebase:firebase-admin:9.4.3")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.cloud:spring-cloud-starter-gateway-mvc")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
