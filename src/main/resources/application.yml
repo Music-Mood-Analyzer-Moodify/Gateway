@@ -1,23 +1,30 @@
+management:
+  endpoint:
+    gateway:
+      enabled: true
+
 spring:
   application:
     name: gateway
   cloud:
     gateway:
+      globalcors:
+        allowed-origins: ${CORS_ALLOWED_ORIGIN}
+        allowed-methods: "*"
+        allow-headers: "*"
+        allow-credentials: true
       routes:
         - id: song_service
-          uri: http://song-service
+          uri: ${SONG_SERVICE_URL}
           predicates:
             - Path=/api/song/**
-          filters:
-            - StripPrefix=2
         - id: analytics_service
-          uri: http://analytics-service
+          uri: ${ANALYTICS_SERVICE_URL}
           predicates:
             - Path=/api/analytics/**
-          filters:
-            - StripPrefix=2
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: https://www.googleapis.com/service_accounts/v1/jwk/securetoken%40system.gserviceaccount.com
+auth:
+  public-endpoints:
+    - path: /api/user/**
+      method: POST
+cors:
+  allowed-origin: ${CORS_ALLOWED_ORIGIN}

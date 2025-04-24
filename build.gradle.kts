@@ -9,7 +9,7 @@ version = "0.0.1-SNAPSHOT"
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(24)
+		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 
@@ -20,11 +20,12 @@ repositories {
 extra["springCloudVersion"] = "2024.0.1"
 
 dependencies {
-	implementation("com.google.firebase:firebase-admin:9.4.3")
-	implementation("org.springframework.boot:spring-boot-starter-security")
-	implementation("org.springframework.cloud:spring-cloud-starter-gateway-mvc")
+	annotationProcessor("org.projectlombok:lombok:1.18.36")
+	compileOnly("org.projectlombok:lombok:1.18.36")
+    implementation ("org.springframework.cloud:spring-cloud-starter-gateway")
+    implementation ("com.google.firebase:firebase-admin:9.4.3")
+	implementation ("io.grpc:grpc-netty:1.71.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
