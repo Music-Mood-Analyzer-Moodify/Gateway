@@ -8,20 +8,29 @@ spring:
     name: gateway
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
       globalcors:
-        allowed-origins: ${CORS_ALLOWED_ORIGIN}
-        allowed-methods: "*"
-        allow-headers: "*"
-        allow-credentials: true
+        cors-configurations:
+          "[/**]":
+            allowed-origins: ${CORS_ALLOWED_ORIGIN}
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+            max-age: 3600
       routes:
         - id: song_service
           uri: ${SONG_SERVICE_URL}
           predicates:
             - Path=/api/song/**
+          filters:
+            - StripPrefix=2
         - id: analytics_service
           uri: ${ANALYTICS_SERVICE_URL}
           predicates:
             - Path=/api/analytics/**
+          filters:
+            - StripPrefix=2
 auth:
   public-endpoints:
     - path: /api/user/**
