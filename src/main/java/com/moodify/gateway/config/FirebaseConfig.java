@@ -12,7 +12,7 @@ public class FirebaseConfig {
     @Bean    
     public FirebaseApp initializeFirebase() throws IOException {        
         if (FirebaseApp.getApps().isEmpty()) {            
-            FirebaseOptions options = FirebaseOptions.builder()                    
+            FirebaseOptions options = FirebaseOptions.builder()
             .setCredentials(GoogleCredentials.getApplicationDefault())                    
             .build();
             return FirebaseApp.initializeApp(options);        
