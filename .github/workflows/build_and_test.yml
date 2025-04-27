@@ -22,11 +22,15 @@ jobs:
           distribution: "temurin"
           cache: gradle
 
+      - name: Create Firebase credentials file
+        run: |
+          echo "${{ secrets.FIREBASE_CREDS }}" > /firebase-auth-creds.json
+
       - name: Build and test application
         env:
           CORS_ALLOWED_ORIGIN: http://localhost:3000
-          GOOGLE_APPLICATION_CREDENTIALS: /some/file.json
-          GOOGLE_CLOUD_PROJECT_ID: some-project-id
+          GOOGLE_APPLICATION_CREDENTIALS: /firebase-auth-creds.json
+          GOOGLE_CLOUD_PROJECT_ID: moodify-web-frontend
           SONG_SERVICE_URL: http://localhost:8081
           ANALYTICS_SERVICE_URL: http://localhost:8082
         run: gradle build --no-daemon --info
