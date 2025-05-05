@@ -44,10 +44,7 @@ spec:
                   name: gateway-secret
                   key: cors-allowed-origin
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              valueFrom:
-                secretKeyRef:
-                  name: gateway-secret
-                  key: google-application-credentials
+              value: /secrets/firebase-auth-creds.json
             - name: GOOGLE_PROJECT_ID
               valueFrom:
                 secretKeyRef:
@@ -57,3 +54,11 @@ spec:
               value: "http://analytics-service-service:9101"
             - name: SONG_SERVICE_URL
               value: "http://song-service-service:9102"
+          volumeMounts:
+            - name: firebase-auth-creds
+              mountPath: /secrets
+              readOnly: true
+      volumes:
+        - name: firebase-auth-creds
+          secret:
+            secretName: firebase-auth-creds
