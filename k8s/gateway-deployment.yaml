@@ -6,9 +6,9 @@ spec:
   selector:
     app: gateway
   ports:
-    - port: 9100
+    - port: 8080
       targetPort: 8080
-  type: LoadBalancer
+  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -51,9 +51,9 @@ spec:
                   name: gateway-secret
                   key: google-project-id
             - name: ANALYTICS_SERVICE_URL
-              value: "http://analytics-service-service:9101"
+              value: "http://analytics-service-service:8081"
             - name: SONG_SERVICE_URL
-              value: "http://song-service-service:9102"
+              value: "http://song-service-service:8082"
           volumeMounts:
             - name: firebase-auth-creds
               mountPath: /secrets
