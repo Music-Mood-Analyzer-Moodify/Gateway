@@ -35,5 +35,7 @@ auth:
   public-endpoints:
     - path: /api/user/**
       method: POST
+    - path: /api/song/song
+      method: GET
 cors:
   allowed-origin: ${CORS_ALLOWED_ORIGIN}
