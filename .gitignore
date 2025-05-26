@@ -38,3 +38,4 @@ out/
 
 .env
 firebase-auth-creds.json
+/app/
