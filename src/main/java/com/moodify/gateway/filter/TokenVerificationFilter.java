@@ -37,8 +37,10 @@ public class TokenVerificationFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String originHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.ORIGIN);
 
-        if (originHeader == null || originHeader.isBlank() || !originHeader.equals(this.allowedOrigin)) {
-            return writeErrorResponse(exchange, HttpStatus.FORBIDDEN, "Invalid or missing Origin header.");
+        if (originHeader != null) {
+            if (!originHeader.equals(this.allowedOrigin)) {
+                return writeErrorResponse(exchange, HttpStatus.FORBIDDEN, "Invalid Origin header.");
+            }
         }
 
         String path = exchange.getRequest().getURI().getPath();
