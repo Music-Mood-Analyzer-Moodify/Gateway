@@ -37,5 +37,9 @@ auth:
       method: POST
     - path: /api/song/allSongs
       method: GET
+      
 cors:
   allowed-origin: ${CORS_ALLOWED_ORIGIN}
+
+server:
+  address: 0.0.0.0
