@@ -51,4 +51,4 @@ jobs:
             k8s
           strategy: 'basic'
           images: '${{ secrets.REGISTRY_USERNAME }}/moodify_gateway:latest'
-          pull-images: false
+          pull-images: true
