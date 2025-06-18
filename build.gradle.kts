@@ -22,7 +22,8 @@ extra["springCloudVersion"] = "2024.0.1"
 dependencies {
 	annotationProcessor("org.projectlombok:lombok:1.18.36")
 	compileOnly("org.projectlombok:lombok:1.18.36")
-    implementation("org.springframework.cloud:spring-cloud-starter-gateway")
+    implementation("com.grafana:grafana-opentelemetry-starter:1.4.0")
+	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
 	implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.google.firebase:firebase-admin:9.4.3")
 	implementation("io.grpc:grpc-netty:1.71.0")
