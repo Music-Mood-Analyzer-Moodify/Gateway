@@ -1,21 +1,16 @@
 management:
-  metrics:
-    export:
-      prometheus:
-        enabled: true
   endpoint:
     gateway:
       enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: health, info, httptrace, metrics, threaddump, mappings, prometheus
+  otlp:
+    metrics:
+      enabled: true
+      export:
+        url: ${OTEL_EXPORTER_OTLP_ENDPOINT}
 
 spring:
   application:
     name: gateway
-  main:
-    web-application-type: reactive
   cloud:
     gateway:
       default-filters:
