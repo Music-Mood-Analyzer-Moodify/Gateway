@@ -22,6 +22,8 @@ extra["springCloudVersion"] = "2024.0.1"
 dependencies {
 	annotationProcessor("org.projectlombok:lombok:1.18.36")
 	compileOnly("org.projectlombok:lombok:1.18.36")
+	implementation("io.micrometer:micrometer-registry-otlp:1.15.0-M3")
+	implementation("io.opentelemetry.instrumentation:opentelemetry-spring-boot-starter:2.12.0")
 	implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("com.google.firebase:firebase-admin:9.4.3")
 	implementation("io.grpc:grpc-netty:1.71.0")
