@@ -25,8 +25,9 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.REGISTRY_USERNAME }}/moodify_gateway:latest
-          tags: ${{ secrets.REGISTRY_USERNAME }}/moodify_gateway:${{ github.sha }}
+          tags: |
+            ${{ secrets.REGISTRY_USERNAME }}/moodify_gateway:latest
+            ${{ secrets.REGISTRY_USERNAME }}/moodify_gateway:${{ github.sha }}
 
 
       - name: Azure Login
