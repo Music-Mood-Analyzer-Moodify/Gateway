@@ -26,6 +26,7 @@ jobs:
         with:
           push: true
           tags: ${{ secrets.REGISTRY_USERNAME }}/moodify_gateway:latest
+          tags: ${{ secrets.REGISTRY_USERNAME }}/moodify_gateway:${{ github.sha }}
 
 
       - name: Azure Login
@@ -50,5 +51,13 @@ jobs:
           manifests: |
             k8s
           strategy: 'basic'
-          images: '${{ secrets.REGISTRY_USERNAME }}/moodify_gateway:latest'
+          images: '${{ secrets.REGISTRY_USERNAME }}/moodify_gateway:${{ github.sha }}'
           pull-images: true
+
+      - name: Rollout new version
+        run: |
+          kubectl get pods -o wide
+          kubectl get hpa gateway-hpa
+          kubectl describe hpa gateway-hpa
+          kubectl get deployment gateway-deployment -o yaml
+          kubectl get service gateway-service -o yaml
