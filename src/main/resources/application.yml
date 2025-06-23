@@ -2,6 +2,15 @@ management:
   endpoint:
     gateway:
       enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+  otlp:
+    tracing:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+    metrics:
+      export:
+        step: 10s
 
 spring:
   application:
