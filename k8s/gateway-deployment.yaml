@@ -110,6 +110,10 @@ spec:
               value: "http://analytics-service-service:8081"
             - name: SONG_SERVICE_URL
               value: "http://song-service-service:8082"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://grafana-k8s-monitoring-alloy-receiver.default.svc.cluster.local:4318"
+            - name: OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION
+              value: "base2_exponential_bucket_histogram"
           volumeMounts:
             - name: firebase-auth-creds
               mountPath: /secrets
